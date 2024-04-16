@@ -1,48 +1,41 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.Iterator;
+
 
 public class FloodFill {
 
-/**
- * A class containing a few helper methods that may be useful for the flood-fill lab assignment.
- */
-public class Utilities {
-
     /**
-     * Copies a BufferedImage and returns the copy.
-     * @param img a BufferedImage
-     * @return an independent copy of img
-     */
-    public static BufferedImage copyImage(BufferedImage img ) {
-        BufferedImage clone = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
-        Graphics2D g2d = clone.createGraphics();
-        g2d.drawImage(img, 0, 0, null);
-        g2d.dispose();
-        return clone;
-    }
-
-    /**
-     * Computes and returns a "distance" between the colors of two pixels.
+     * Fills the area around a starting point in an image with a specified color.
      *
-     * @param pixelA an integer pixel value (in the form produced by BufferedImage.getRGB(x,y) )
-     * @param pixelB an integer pixel value (in the form produced by BufferedImage.getRGB(x,y) )
-     * @return a "distance" between the two colors
+     * @param img       the BufferedImage to perform flood-fill on.
+     * @param fillColor the color to fill the area with.
+     * @param start     the starting point for the flood-fill operation.
+     * @param thresh    the threshold for color difference.
+     * @return a new BufferedImage with the filled area.
      */
-    public static double computeDelta( int pixelA, int pixelB ) {
-        float[] hsbA = Color.RGBtoHSB((pixelA >> 16) & 0xff, (pixelA >> 8) & 0xff, pixelA & 0xff, null );
-        float[] hsbB = Color.RGBtoHSB((pixelB >> 16) & 0xff, (pixelB >> 8) & 0xff, pixelB & 0xff, null );
+    public static BufferedImage fill(BufferedImage img, Color fillColor, Point start, double thresh) {
+        
+        // create copy of image
+        BufferedImage modifiedImage = Utilities.copyImage(img);
 
-        float dist2 =
-                (hsbA[0] - hsbB[0]) * (hsbA[0] - hsbB[0]) +
-                (hsbA[1] - hsbB[1]) * (hsbA[1] - hsbB[1]) +
-                (hsbA[2] - hsbB[2]) * (hsbA[2] - hsbB[2]);
+        // create ImageWalker object using the original image (img), thresh and start
+        ImageWalker imageWalker = new ImageWalker(img, start, thresh);
 
-        return Math.sqrt(dist2);
+        // iterator to move through the images pixels
+        Iterator<Point> pixelIterator = imageWalker.iterator();
+
+        // traverse through through imgs pixels
+        while (pixelIterator.hasNext()) {
+            //contains current pixel / position of the iterator
+            Point currentPixel = pixelIterator.next();
+
+            //modify colors of image
+            modifiedImage.setRGB(currentPixel.x, currentPixel.y, fillColor.getRGB());
+            
+        }
+
+        return modifiedImage;
     }
-
-}
-
-public static BufferedImage fill (BufferedImage img, Color fillColor, Point start, double thresh) {
-    return null;
-}
 }
