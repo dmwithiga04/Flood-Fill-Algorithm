@@ -15,12 +15,19 @@ public class ImageWalker implements Iterable<Point> {
    */
   private class BFSIterator implements Iterator<Point> {
 
+    //needed variables
     private Queue<Point> queue;
     private boolean[][] visited;
 
-    public BFSIterator(Queue<Point> queue, boolean[][] visited) {
-      this.queue = queue;
-      this.visited = visited;
+    /**
+     * Constructor method
+     */
+    private BFSIterator() {
+      // initialize needed variables needed to for the iterator method
+      queue = new LinkedList<>();
+      visited = new boolean[image.getWidth()][image.getHeight()];
+      queue.add(start);
+      visited[start.x][start.y] = true;
     }
 
     /**
@@ -56,7 +63,6 @@ public class ImageWalker implements Iterable<Point> {
       int y = currentPoint.y;
 
       // Moving through the pixels in the following order:
-
       // The pixel to the right (x+1)
       if (x + 1 < image.getWidth() && !visited[x + 1][y]
           && Utilities.computeDelta(image.getRGB(x + 1, y), image.getRGB(start.x, start.y)) <= threshold) {
@@ -107,6 +113,7 @@ public class ImageWalker implements Iterable<Point> {
 
   }
 
+  // variables needed
   private BufferedImage image;
   private double threshold;
   private Point start;
@@ -135,11 +142,6 @@ public class ImageWalker implements Iterable<Point> {
   @Override
   public Iterator<Point> iterator() {
 
-    Queue<Point> queue = new LinkedList<>();
-    boolean[][] visited = new boolean[image.getWidth()][image.getHeight()];
-    queue.add(start);
-    visited[start.x][start.y] = true;
-
-    return new BFSIterator(queue, visited);
+    return new BFSIterator();
   }
 }

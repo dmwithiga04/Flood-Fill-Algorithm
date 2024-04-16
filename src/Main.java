@@ -9,12 +9,14 @@ import javax.imageio.ImageIO;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
         // Load the image
-        BufferedImage img = ImageIO.read(new File("die_4.png"));
+        BufferedImage img = ImageIO.read(new File("ovals.png"));
         // Flood fill starting at (0,0)
-        BufferedImage filled = FloodFill.fill(img, Color.blue, new Point(0, 0), 1.5);
+        BufferedImage filled = FloodFill.gridFill(img, Color.blue, Color.green, new Point(0, 0), 0.2,10);
         // Write out the result to "out.png"
         ImageIO.write(filled, "PNG", new File("out.png"));
+
     }
 
 }
