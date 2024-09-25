@@ -1,18 +1,35 @@
-## Getting Started
+# Flood Fill Algorithm Project
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Project Overview
+**Feb 2024 - Mar 2024**
 
-## Folder Structure
+Developed a custom **Flood Fill Algorithm** in Java, designed for efficient image processing. The algorithm utilizes a **Queue data structure** to accurately color pixels based on specified parameters, ensuring the integrity of the original image is maintained. This project demonstrates practical image processing techniques, with a focus on performance and accuracy.
 
-The workspace contains two folders by default, where:
+## Key Features
+- **Queue-Based Flood Fill:** Utilizes a queue to efficiently process and color large images.
+- **Pixel Precision:** Accurately fills the desired areas based on user-specified parameters.
+- **Image Preservation:** Maintains the quality and integrity of the original image during processing.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Tech Stack
+- **Language:** Java
+- **Concepts Applied:** Image Processing, Queue Data Structure, Algorithms
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Usage
+1. **Clone the repository.**
+2. **Compile** using any Java IDE or via the command line with `javac FloodFill.java`.
+3. **Run the program** through the `main` method with your desired parameters:
+   ```
+   public class Main {
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+    public static void main(String[] args) throws IOException {
 
-## Dependency Management
+        // Load the image
+        BufferedImage img = ImageIO.read(new File("die_4.png"));
+        // Flood fill starting at (0,0)
+        FloodFill.animateFill(img,Color.blue, new Point(0,0),0.1, 100);
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+    }
+
+   }
+   ```
+5. The algorithm will process the image and apply the flood fill based on the specified start point and color.
