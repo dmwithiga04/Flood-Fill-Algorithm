@@ -16,8 +16,7 @@ Developed a custom **Flood Fill Algorithm** in Java, designed for efficient imag
 
 ## Usage
 1. **Clone the repository.**
-2. **Compile** using any Java IDE or via the command line with `javac FloodFill.java`.
-3. **Run the program** through the `main` method with your desired parameters:
+2. **Run the program** through the `main` method with your desired parameters(Pictures Provided for program use in Project Folder):
    ```
    public class Main {
 
@@ -32,4 +31,4 @@ Developed a custom **Flood Fill Algorithm** in Java, designed for efficient imag
 
    }
    ```
-5. The algorithm will process the image and apply the flood fill based on the specified start point and color.
+3. The algorithm will process the image and apply the flood fill based on the specified start point and color.
